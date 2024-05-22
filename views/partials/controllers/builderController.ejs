@@ -1,0 +1,43 @@
+<div class="dropdown">
+    <a id="builder_operations" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="builder_btn btn_light">
+        <i class="rt-icon2-spanner-outline"></i> Actions
+        <i class="rt-icon2-chevron-small-down"></i>
+    </a>
+
+    <ul class="dropdown-menu" aria-labelledby="builder_operations">
+        <li id="save_page">
+            <a href="#" data-toggle="modal" data-target="#getPageName">
+                <i class="rt-icon2-cross"></i> Save Page
+            </a>
+        </li>
+        <li id="getcode">
+            <a href="#" ng-click="getPageCode();">
+                <i class="rt-icon2-edit"></i> Get Page Code</a>
+        </li>
+
+        <li>
+            <a href="#" ng-click="exportProject();"><span class="rt-icon2-out"></span> Export Project</a>
+        </li>
+        <li>
+            <a href="#" data-toggle="modal" data-target="#importProject"><span class="rt-icon2-in"></span> Import Project</a>
+        </li>
+        
+        <li class="text-divider">Requires PHP:</li>
+        <li id="preview">
+            <a href="#" ng-click="pagePreview();">
+                <span class="rt-icon2-zoom"></span> Preview
+            </a>
+        </li>
+        <li id="generate_html">
+            <a href="#" ng-click="generateFiles();">
+                <span class="rt-icon2-code-outline"></span> Create Pages
+            </a>
+        </li>
+        <li id="get_zip">
+            <a href="#" ng-click="generateZip();">
+                <span class="rt-icon2-download-outline"></span> Get ZIP
+            </a>
+        </li>
+
+    </ul>
+</div>

@@ -1,0 +1,36 @@
+<div class="dropdown">
+    Editing:&nbsp;
+    <a id="pages_operations" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <i class="rt-icon2-document2"></i>  {{ editingPage }}
+            <span ng-switch="editingPage == 'untitled'">
+                <span ng-switch-when="false">
+                    .html
+                </span>
+            </span>
+        <i class="rt-icon2-chevron-small-down"></i>
+    </a>
+
+    <ul class="dropdown-menu" aria-labelledby="pages_operations">
+        <li>
+            <a href="#" data-toggle="modal" ng-click="savePage(editingPage, true)"><i class="rt-icon2-cross"></i> Save </a>
+        </li>
+        <li id="save_page_as">
+            <a href="#" data-toggle="modal" data-target="#getPageName"><span class="rt-icon2-pen2"></span> Save As...</a>
+        </li>
+
+        
+        <li class="text-divider">
+            <span ng-if="!pagesLength">No</span>
+            Saved Pages
+        </li>
+        
+        <li ng-repeat="(pageId, page) in $storage.pages">
+            <a href="#" ng-click="editPage(pageId, true)">
+                <i class="rt-icon2-document2"></i>
+                {{ pageId }}.html
+            </a>
+        </li>
+
+    </ul>					
+    
+</div>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html ng-app="visualBuilder">
+	<head>
+		<title>Visual builder</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- template styles -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/fonts.css">
+		<link rel="stylesheet" href="css/main.css" id="color-switcher-link">
+		<!-- builder styles -->
+		<link rel="stylesheet" href="builder/css/jquery.scrollbar.css">
+		<link rel="stylesheet" href="builder/css/dropzone.css">
+		<link rel="stylesheet" href="builder/css/builder.css">
+		<script src="js/vendor/modernizr-2.6.2.min.js"></script>
+
+	</head>	
+
+	<body ng-controller="ConfigCtrl" ng-class="tinymce">
+
+	<div class="preloader">
+		<div class="preloader_image"></div>
+	</div>
+
+	<div id="modals">
+		<!-- Common Message -->
+        <%- include('partials/modals/commonMessage.ejs'); %>
+
+		<!-- Import Project -->
+        <%- include('partials/modals/importProject.ejs'); %>
+
+		<!-- Common Delete Dialog -->
+        <%- include('partials/modals/commonDelete.ejs'); %>
+
+		<!-- Delete Section Dialog -->
+        <%- include('partials/modals/deleteSection.ejs'); %>
+
+		<!-- Delete Column Dialog -->
+        <%- include('partials/modals/deleteColumn.ejs'); %>
+
+
+		<!-- Get Page Code -->
+        <%- include('partials/modals/getPageCode.ejs'); %>
+
+		<!-- Get Project Code -->
+        <%- include('partials/modals/getProjectCode.ejs'); %>
+
+
+		<!-- Edit Page Dialog -->
+        <%- include('partials/modals/editPageDialog.ejs'); %>
+
+		<!-- Get Section ID if not set for save in localstorage -->
+		<%- include('partials/modals/getSectionId.ejs'); %>
+
+		<!-- Get Page title and Page name for save Page in localstorage -->
+	    <%- include('partials/modals/getPageName.ejs'); %>
+
+
+		<!-- editSection -->
+		<%- include('partials/modals/editSection.ejs'); %>
+
+
+		<!-- editColumn -->
+        <%- include('partials/modals/editColumn.ejs'); %>
+
+
+		<!-- Visual Select -->
+        <%- include('partials/modals/visualSelect.ejs'); %>
+
+		<!-- Visual Image Select Modal -->
+        <%- include('partials/modals/visualImageSelect.ejs'); %>
+
+	</div><!--eof #modals-->
+
+	<div id="controls" class="ls ms" ng-cloak>
+		<!-- Controls -->
+        <!-- Pages Controller -->
+        <%- include('partials/controllers/pagesController.ejs'); %>
+        <!-- Modes Controller -->
+        <%- include('partials/controllers/modesController.ejs'); %>
+        <!-- Trash Controller -->
+        <%- include('partials/controllers/trashController.ejs'); %>
+		<!-- Builder Controller -->
+        <%- include('partials/controllers/builderController.ejs'); %>
+	</div>
+
+	<!-- <div id="sidebar" ng-mouseleave="activateGroup(-1)"> -->
+    <%- include('partials/sidebar/index.ejs'); %>
+
+
+	<div id="canvas_wrapper" ng-class="{ 'grid' : grid }"><div id="canvas_wrapper_dots"></div>
+		<div id="canvas">
+			<div id="box_wrapper">
+
+
+
+			</div><!-- eof #box_wrapper -->
+		</div><!-- eof #canvas -->
+	</div><!-- eof #canvas_wrapper -->
+
+
+
+		<!-- libs -->
+		
+		<script src="js/vendor/jquery-2.2.4.min.js"></script>
+		<script src="builder/js/jquery-ui.min.js"></script>
+		<script src="js/vendor/bootstrap.min.js"></script>
+		<script src="builder/js/bootstrap-select.min.js"></script>
+		<script src="builder/js/dropzone.js"></script>
+		<script src="builder/js/angular.min.js"></script>
+		<script src="builder/js/angular.ngStorage.min.js"></script>
+		<script src="builder/js/angular-sanitize.min.js"></script>
+		<script src="builder/js/angular-bootstrap-select.js"></script>
+		<script src="builder/js/angular-dropzone.js"></script>
+		<script src="builder/js/jquery.scrollbar.min.js"></script>
+
+		<!-- TinyMCE editor -->
+		<script src="builder/js/tinymce/tinymce.min.js"></script>
+		<script src="builder/js/tinymce/jquery.tinymce.min.js"></script> 
+		
+		<!-- main script -->
+		<script src="builder/js/builder.js"></script>
+		
+
+		<!-- plugins -->
+		<script src="js/vendor/jquery.cookie.js"></script>
+		<script src="js/switcher.js"></script>
+
+	</body>
+</html>
