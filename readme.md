@@ -9,14 +9,11 @@ Built with AngularJS version < 2.0, and using PHP to faciliate an API for image 
 
 To run, make sure to have PHP installed. Latest versions of PHP come with a built-in runtime webserver. 
 
-a /backend folder has been created to capture the efforts of decoupling the codebase into frontend and backend. 
-Also, replacing PHP for NodeJS. 
-
-But, the original code is in /app.
+The original code is in /src.
 
 After the repository is cloned and PHP is installed:
 
-`cd /app`
+`cd /src`
 `php -S localhost:9000`
 
 Navigate to localhost:9000/_builder.html 
