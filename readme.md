@@ -14,6 +14,7 @@ The original code is in /src.
 After the repository is cloned and PHP is installed:
 
 `cd /src`
+
 `php -S localhost:9000`
 
 Navigate to localhost:9000/_builder.html 
