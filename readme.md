@@ -17,7 +17,7 @@ After the repository is cloned and PHP is installed:
 
 `php -S localhost:9000`
 
-Navigate to localhost:9000/_builder.html 
+Navigate to localhost:9000/index.html 
 
 Feel free to change the port to whatever you'd like. 
 

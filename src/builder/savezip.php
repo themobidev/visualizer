@@ -1,6 +1,6 @@
 <?php
 //what not need to copy
-$excludes = array('_builder.html', '_template.html', 'gulpfile.js', 'builder', 'node_modules', 'includes', '.', '..');
+$excludes = array('index.html', '_template.html', 'gulpfile.js', 'builder', 'node_modules', 'includes', '.', '..');
 //current temp folder
 $dst = 'output_'.time().'_'.mt_rand(10000, 99999);
 //copy from where 
