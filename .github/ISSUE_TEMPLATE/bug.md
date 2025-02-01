@@ -1,3 +1,10 @@
+---
+name: Bug
+about: Use this template for Bugs.
+title: "[Request]"
+labels:  ""
+assignees: ""
+---
 ## Summary
 
 ## Expected Behavior
