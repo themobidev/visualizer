@@ -1,8 +1,8 @@
 ---
 name: Bug
 about: Use this template for Bugs.
-title: "[Request]"
-labels:  ""
+title: ""
+labels:  "bug"
 assignees: ""
 ---
 ## Summary
