@@ -1,0 +1,27 @@
+.sidemenu-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidemenu-item .name {
+    height: 62px;
+    width: 260px;
+    display: flex;
+    align-items: center;
+    padding: 21px 30px;
+    font-size: 16px;
+    background-color: #1a1a1a;
+}
+
+.sidemenu-item .image {
+    height: 87px;
+    width: 260px;
+    padding: 0px 30px;
+    display: flex;
+    align-items: center;
+    background-color: #262626;
+}
+
+.sidemenu-item .image img {
+    cursor: move;
+}
