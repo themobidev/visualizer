@@ -1,5 +1,6 @@
 import { useState } from "react"
-import TopLine from "../components/Topline"
+import TopLine from "../components/TopLine"
+import TopLogo from "../components/TopLogo"
 
 const useSidebar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -8,7 +9,7 @@ const useSidebar = () => {
 
     const [elementCategory, setElementCategory] = useState([
         {text: "Topline sections", active: false, onClick: () => setElementList(TopLine)},
-        {text: "Top Logo", active: false, onClick: () => setElementList([])},
+        {text: "Top Logo", active: false, onClick: () => setElementList(TopLogo)},
         {text: "Headers", active: false, onClick: () => setElementList([])},
         {text: "Title Sections", active: false, onClick: () => setElementList([])},
         {text: "Intro Sections", active: false, onClick: () => setElementList([])},
