@@ -1,53 +1,56 @@
 import { useState } from "react"
-import TopLine from "../components/Topline"
+import TopLine from "../components/ToplineMenuItems"
+import { useDndMonitor } from "@dnd-kit/core"
 
 const useSidebar = () => {
+
     const [sidebarOpen, setSidebarOpen] = useState(false)
 
-    const [elementList, setElementList] = useState<React.FC[]>([])
+    const [menuItemMap, setMenuItemMap] = useState<{[key: string]: {active: boolean; list: React.FC<{}>[]}}>({
+        "": {active: true, list: []},
+        "Topline sections": {active: false, list: TopLine},
+        "Top Logo": {active: false, list: []},
+        "Headers": {active: false, list: []},
+        "Title Sections": {active: false, list: []},
+        "Intro Sections": {active: false, list: []},
+        "Action Sections": {active: false, list: []},
+        "Features sections": {active: false, list: []},
+        "Text Sections": {active: false, list: []},
+        "Block elements": {active: false, list: []},
+        "Contact Sections": {active: false, list: []},
+        "Footers": {active: false, list: []},
+        "Copyrights": {active: false, list: []},
+        "Carousels": {active: false, list: []},
+        "HTML elements": {active: false, list: []},
+        "Grid Elements": {active: false, list: []},
+        "Teasers": {active: false, list: []},
+        "Styled lists": {active: false, list: []},
+        "Bootstrap": {active: false, list: []}
+    })
 
-    const [elementCategory, setElementCategory] = useState([
-        {text: "Topline sections", active: false, onClick: () => setElementList(TopLine)},
-        {text: "Top Logo", active: false, onClick: () => setElementList([])},
-        {text: "Headers", active: false, onClick: () => setElementList([])},
-        {text: "Title Sections", active: false, onClick: () => setElementList([])},
-        {text: "Intro Sections", active: false, onClick: () => setElementList([])},
-        {text: "Action Sections", active: false, onClick: () => setElementList([])},
-        {text: "Features sections", active: false, onClick: () => setElementList([])},
-        {text: "Text Sections", active: false, onClick: () => setElementList([])},
-        {text: "Block elements", active: false, onClick: () => setElementList([])},
-        {text: "Contact Sections", active: false, onClick: () => setElementList([])},
-        {text: "Footers", active: false, onClick: () => setElementList([])},
-        {text: "Copyrights", active: false, onClick: () => setElementList([])},
-        {text: "Carousels", active: false, onClick: () => setElementList([])},
-        {text: "HTML elements", active: false, onClick: () => setElementList([])},
-        {text: "Grid Elements", active: false, onClick: () => setElementList([])},
-        {text: "Teasers", active: false, onClick: () => setElementList([])},
-        {text: "Styled lists", active: false, onClick: () => setElementList([])},
-        {text: "Bootstrap", active: false, onClick: () => setElementList([])}
-    ])
-
-    const setActiveCategory = (i: number) => {
-        setElementCategory(prev => {
-            prev = prev.map((e, index) => {
-                if(index == i) {
-                    e.active = true
-                    return e
-                }
-                e.active = false
-                return e
-            })
-            return prev
+    const setActiveCategory = (key: keyof typeof menuItemMap) => {
+        setMenuItemMap(prev => {
+            let next = Object.fromEntries(
+                Object.entries(prev)
+                .map(([k, v]) => {
+                    v.active = false
+                    return [k, v]
+                })
+            )
+            next[key].active = true
+            return next
         })
     }
 
+    useDndMonitor({
+        onDragStart: () => setSidebarOpen(false)
+    })
+
     return {
         sidebarOpen, 
-        elementList, 
-        elementCategory, 
-        setSidebarOpen, 
-        setActiveCategory,
-        setElementList
+        setSidebarOpen,
+        menuItemMap,
+        setActiveCategory
     }
 }
 

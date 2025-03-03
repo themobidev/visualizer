@@ -1,4 +1,4 @@
-import "../css/SidemenuItem.css"
+import "../css/ToplineMenuItems.css"
 import topline1 from "../assets/element_image/topline1.png"
 import topline2 from "../assets/element_image/topline2.png"
 import topline3 from "../assets/element_image/topline3.png"
@@ -6,10 +6,19 @@ import topline4 from "../assets/element_image/topline4.png"
 import topline5 from "../assets/element_image/topline5.png"
 import topline6 from "../assets/element_image/topline6.png"
 import topline7 from "../assets/element_image/topline7.png"
+import { useDraggable } from "@dnd-kit/core"
 
 export const GrayTopline: React.FC = () => {
+    const {attributes, listeners, setNodeRef} = useDraggable({
+        id: 1,
+        data: {
+            type: "Topline",
+            element: <div>Hello!</div>
+        }
+    })
+
     return (
-        <div className="sidemenu-item">
+        <div ref={setNodeRef} {...listeners} {...attributes} className="sidemenu-item">
             <div className="name">GREY TOPLINE</div>
             <div className="image"><img src={topline1}></img></div>
         </div>
@@ -17,8 +26,14 @@ export const GrayTopline: React.FC = () => {
 }
 
 export const DarkTopline: React.FC = () => {
+    const {setNodeRef} = useDraggable({
+        id: 2,
+        data: {
+            type: "TopLine"
+        }
+    })
     return (
-        <div className="sidemenu-item">
+        <div ref={setNodeRef} className="sidemenu-item">
             <div className="name">DARK TOPLINE</div>
             <div className="image"><img src={topline2}></img></div>
         </div>
