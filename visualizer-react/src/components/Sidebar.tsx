@@ -11,7 +11,7 @@ const Sidebar: React.FC = () => {
     } = useSidebar() 
 
     return (
-        <div className="sidebar" style={{marginLeft: sidebarOpen? "0px" : "-200px"}}>
+        <div className="sidebar" style={{transform: sidebarOpen? "translate(0px)" : "translate(-100%)"}}>
             <div 
                 className="sidebar-icon" 
                 onClick={() => setSidebarOpen(prev => !prev)}

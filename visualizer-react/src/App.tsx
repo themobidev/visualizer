@@ -4,13 +4,17 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import './css/App.css'
 import { useState } from 'react';
+import React from 'react';
 
 const App: React.FC = () => {
-  const [overlayElement, setOverlayElement] = useState()
+  const [OverlayElement, setOverlayElement] = useState<React.FC | null>(null)
   useDndMonitor({
-    onDragStart: e => setOverlayElement(e.active.data.current?.element),
-    onDragEnd: () => setOverlayElement(undefined)
+    onDragStart: e => {
+      setOverlayElement(() => e.active.data.current?.element)
+    },
+    onDragEnd: () => setOverlayElement(null)
   })
+
   return (
     <div>
       <Navbar />
@@ -19,7 +23,7 @@ const App: React.FC = () => {
         <Canvas />
       </div>
       <DragOverlay>
-        {overlayElement}
+        {OverlayElement==null ? null : <OverlayElement/>}
       </DragOverlay>
     </div>
   )
