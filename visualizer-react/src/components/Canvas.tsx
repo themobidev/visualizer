@@ -1,26 +1,11 @@
-import { DndContext, useDndMonitor, useDroppable } from "@dnd-kit/core"
+import { DndContext } from "@dnd-kit/core"
 import "../css/Canvas.css"
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
 import useCanvas from "../hooks/useCanvas"
 
 const Canvas: React.FC = () => {
 
-    const {CanvasChildren, addChild, swapChildren} = useCanvas()
-
-    const {setNodeRef} = useDroppable({
-        id: "canvas",
-        data: {
-            accepts: ["ToplineMenuItem"]
-        }
-    })
-
-    useDndMonitor({
-        onDragEnd: e => {
-            if(e.over?.data.current?.accepts?.includes(e.active.data.current?.type)) {
-                addChild(e.active.data.current?.element)
-            } 
-        }
-    })
+    const {setNodeRef, CanvasChildren, moveChildren} = useCanvas()
 
     return (
         <div className="canvas">
@@ -30,7 +15,7 @@ const Canvas: React.FC = () => {
                 <div className="green"></div>
             </div>
             <div ref={setNodeRef} className="canvas-body">
-                <DndContext onDragEnd={swapChildren}>
+                <DndContext onDragEnd={moveChildren}>
                     <SortableContext items={CanvasChildren.map(e => e.id)} strategy={verticalListSortingStrategy} >
                         {CanvasChildren.map(e => <e.Child key={e.id} id={e.id}/>)}
                     </SortableContext>

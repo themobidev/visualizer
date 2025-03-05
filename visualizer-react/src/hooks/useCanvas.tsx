@@ -1,3 +1,4 @@
+import { useDndMonitor, useDroppable } from "@dnd-kit/core"
 import { useRef, useState } from "react"
 export type CanvasChildrenType = {
     id: number,
@@ -14,7 +15,7 @@ const useCanvas = () => {
             return next
         })
     }
-    const swapChildren = (e: any) =>  {
+    const moveChildren = (e: any) =>  {
         const {active, over} = e;
         if (active.id !== over.id) {
             let oldIndex = CanvasChildren.findIndex(e => e.id == active.id)
@@ -31,10 +32,25 @@ const useCanvas = () => {
             })
         }
     }
+    const {setNodeRef} = useDroppable({
+        id: "canvas",
+        data: {
+            accepts: ["ToplineMenuItem"]
+        }
+    })
+    
+    useDndMonitor({
+        onDragEnd: e => {
+            if(e.over?.data.current?.accepts?.includes(e.active.data.current?.type)) {
+                addChild(e.active.data.current?.element)
+            } 
+        }
+    })
+
     return {
+        setNodeRef,
         CanvasChildren,
-        addChild,
-        swapChildren
+        moveChildren
     }
 }
 
