@@ -5,47 +5,36 @@ const Sidebar: React.FC = () => {
 
    const {
         sidebarOpen, 
-        elementList, 
-        elementCategory, 
-        setSidebarOpen, 
-        setActiveCategory,
-        setElementList
+        setSidebarOpen,
+        menuItemMap,
+        setActiveCategory
     } = useSidebar() 
 
     return (
-        <div className="sidebar" style={{left: sidebarOpen? "0px" : "-200px"}}>
+        <div className="sidebar" style={{transform: sidebarOpen? "translate(0px)" : "translate(-100%)"}}>
             <div 
                 className="sidebar-icon" 
-                onClick={() => {
-                    if(sidebarOpen) {
-                        setElementList([])
-                    }
-                    setSidebarOpen(prev => !prev)
-                }}
+                onClick={() => setSidebarOpen(prev => !prev)}
             >
                 {sidebarOpen?"⨯": "⚙"}
             </div>
             <div className="category-wrapper">
                 <h2>ELEMENTS</h2>
                 {
-                    elementCategory
-                    .map((e, i) => {
-                        return (
-                            <CaterogyItem 
-                                key={i} 
-                                text={e.text} 
-                                active={e.active} 
-                                onClick={() => {
-                                    e.onClick()
-                                    setActiveCategory(i)
-                                }} 
-                            />
-                        )
-                    })
+                    Object.entries(menuItemMap)
+                    .filter(([k]) => k!="")
+                    .map(([k, v], i ) => 
+                        <CaterogyItem 
+                            key={i} 
+                            text={k} 
+                            active={v.active} 
+                            onClick={() => setActiveCategory(k)}
+                        />
+                    )
                 }
             </div>
             <div className="element-wrapper">
-                {elementList.map((Comp, i) => <Comp key={i}/>)}
+                {Object.values(menuItemMap).find(e => e.active)?.list?.map((Comp, i) => <Comp key={i}/>)}
             </div>
         </div>
     )

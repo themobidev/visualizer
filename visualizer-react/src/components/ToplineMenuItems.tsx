@@ -1,4 +1,4 @@
-import "../css/SidemenuItem.css"
+import "../css/ToplineMenuItems.css"
 import topline1 from "../assets/element_image/topline1.png"
 import topline2 from "../assets/element_image/topline2.png"
 import topline3 from "../assets/element_image/topline3.png"
@@ -6,19 +6,36 @@ import topline4 from "../assets/element_image/topline4.png"
 import topline5 from "../assets/element_image/topline5.png"
 import topline6 from "../assets/element_image/topline6.png"
 import topline7 from "../assets/element_image/topline7.png"
+import { useDraggable } from "@dnd-kit/core"
+import { DarkToplineElement, GrayToplineElement } from "./ToplineMenuElements"
 
-export const GrayTopline: React.FC = () => {
+export const GrayToplineMenuItem: React.FC = () => {
+    const {attributes, listeners, setNodeRef} = useDraggable({
+        id: "GrayToplineMenuItem",
+        data: {
+            type: "ToplineMenuItem",
+            element: GrayToplineElement
+        }
+    })
+
     return (
-        <div className="sidemenu-item">
+        <div ref={setNodeRef} {...listeners} {...attributes} className="sidemenu-item">
             <div className="name">GREY TOPLINE</div>
             <div className="image"><img src={topline1}></img></div>
         </div>
     )
 }
 
-export const DarkTopline: React.FC = () => {
+export const DarkToplineMenuItem: React.FC = () => {
+    const {attributes, listeners, setNodeRef} = useDraggable({
+        id: "DarkToplineMenuItem",
+        data: {
+            type: "ToplineMenuItem",
+            element: DarkToplineElement
+        }
+    })
     return (
-        <div className="sidemenu-item">
+        <div ref={setNodeRef} {...listeners} {...attributes} className="sidemenu-item">
             <div className="name">DARK TOPLINE</div>
             <div className="image"><img src={topline2}></img></div>
         </div>
@@ -71,8 +88,8 @@ export const FullwidthDarkTopline: React.FC = () => {
 }
 
 export default [
-    GrayTopline, 
-    DarkTopline, 
+    GrayToplineMenuItem, 
+    DarkToplineMenuItem, 
     ColorTopline, 
     GrayToplineMenu, 
     DarkToplineMenu, 
