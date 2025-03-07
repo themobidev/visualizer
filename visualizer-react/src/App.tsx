@@ -1,31 +1,31 @@
-import { DragOverlay, useDndMonitor } from '@dnd-kit/core';
+import { DndContext, DragOverlay } from '@dnd-kit/core';
 import Canvas from './components/Canvas';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import './css/App.css'
-import { useState } from 'react';
 import React from 'react';
+import { useBuilderProvider } from './providers/BuilderProvider';
 
 const App: React.FC = () => {
-  const [OverlayElement, setOverlayElement] = useState<React.FC | null>(null)
-  useDndMonitor({
-    onDragStart: e => {
-      setOverlayElement(() => e.active.data.current?.element)
-    },
-    onDragEnd: () => setOverlayElement(null)
-  })
+  
+  const {OverlayElement, onDragCancel, onDragStart, onDragOver, onDragEnd} = useBuilderProvider()
 
   return (
-    <div>
+    <DndContext 
+      onDragCancel={onDragCancel}
+      onDragStart={onDragStart} 
+      onDragOver={onDragOver}
+      onDragEnd={onDragEnd}
+    >
       <Navbar />
       <Sidebar />
       <div className='app-body'>
         <Canvas />
       </div>
       <DragOverlay>
-        {OverlayElement==null ? null : <OverlayElement/>}
+        {OverlayElement == null ? null : <OverlayElement id={"preview"}/>}
       </DragOverlay>
-    </div>
+    </DndContext>
   )
 };
 

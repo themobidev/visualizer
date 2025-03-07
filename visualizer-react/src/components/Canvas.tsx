@@ -1,11 +1,15 @@
-import { DndContext } from "@dnd-kit/core"
 import "../css/Canvas.css"
-import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
-import useCanvas from "../hooks/useCanvas"
+import { SortableContext } from "@dnd-kit/sortable"
+import { useBuilderProvider } from "../providers/BuilderProvider"
+import { useDroppable } from "@dnd-kit/core"
 
 const Canvas: React.FC = () => {
 
-    const {setNodeRef, CanvasChildren, moveChildren} = useCanvas()
+    const {CanvasChildren} = useBuilderProvider()
+
+    const {setNodeRef} =  useDroppable({
+        id: "canvas"
+    })
 
     return (
         <div className="canvas">
@@ -14,13 +18,11 @@ const Canvas: React.FC = () => {
                 <div className="yellow"></div>
                 <div className="green"></div>
             </div>
-            <div ref={setNodeRef} className="canvas-body">
-                <DndContext onDragEnd={moveChildren}>
-                    <SortableContext items={CanvasChildren.map(e => e.id)} strategy={verticalListSortingStrategy} >
-                        {CanvasChildren.map(e => <e.Child key={e.id} id={e.id}/>)}
-                    </SortableContext>
-                </DndContext>
-            </div>
+            <SortableContext id={"canvas"} items={CanvasChildren["canvas"].map(e => e.id)} >
+                <div ref={setNodeRef} className="canvas-body">
+                    {CanvasChildren["canvas"].map((e, i) => <e.Child key={i} id={e.id}/>)}
+                </div>
+            </SortableContext>
         </div>
     )
 }

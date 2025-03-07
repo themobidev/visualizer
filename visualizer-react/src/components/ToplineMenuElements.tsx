@@ -15,7 +15,7 @@ export const GrayToplineElement: React.FC<any> = (prop) => {
 
     const style = {
         width: "100%",
-        height: "200px",
+        height: "100px",
         backgroundColor: "red",
         transform: CSS.Transform.toString(transform),
         transition,
@@ -36,16 +36,16 @@ export const DarkToplineElement: React.FC<any> = (prop) => {
         transform,
         transition
     } = useSortable({
-        id: prop.id,
+        id: prop.id
     })
 
     const style = {
         width: "100%",
-        height: "200px",
+        height: "100px",
         backgroundColor: "green",
         transform: CSS.Transform.toString(transform),
         transition,
-      };
+    };
 
     return (
         <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
