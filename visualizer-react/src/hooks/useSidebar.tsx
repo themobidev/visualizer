@@ -1,6 +1,6 @@
 import { useState } from "react"
 import TopLine from "../components/ToplineMenuItems"
-import { useDndMonitor } from "@dnd-kit/core"
+import { useDndMonitor, useDroppable } from "@dnd-kit/core"
 
 const useSidebar = () => {
 
@@ -46,7 +46,15 @@ const useSidebar = () => {
         onDragStart: () => setSidebarOpen(false)
     })
 
+    const style = {transform: sidebarOpen ? "translate(0px)" : "translate(-100%)"}
+
+    const {setNodeRef} = useDroppable({
+        id: "sidebar"
+    })
+
     return {
+        style,
+        setNodeRef,
         sidebarOpen, 
         setSidebarOpen,
         menuItemMap,

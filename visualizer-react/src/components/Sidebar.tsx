@@ -1,9 +1,12 @@
+import { SortableContext } from "@dnd-kit/sortable"
 import "../css/Sidebar.css"
 import useSidebar from "../hooks/useSidebar"
 
 const Sidebar: React.FC = () => {
 
-   const {
+    const {
+        style,
+        setNodeRef,
         sidebarOpen, 
         setSidebarOpen,
         menuItemMap,
@@ -11,7 +14,7 @@ const Sidebar: React.FC = () => {
     } = useSidebar() 
 
     return (
-        <div className="sidebar" style={{transform: sidebarOpen? "translate(0px)" : "translate(-100%)"}}>
+        <div className="sidebar" style={style}>
             <div 
                 className="sidebar-icon" 
                 onClick={() => setSidebarOpen(prev => !prev)}
@@ -33,9 +36,11 @@ const Sidebar: React.FC = () => {
                     )
                 }
             </div>
-            <div className="element-wrapper">
-                {Object.values(menuItemMap).find(e => e.active)?.list?.map((Comp, i) => <Comp key={i}/>)}
-            </div>
+            <SortableContext id={"sidebar"} items={["GrayToplineMenuItem", "DarkToplineMenuItem"]}>
+                <div ref={setNodeRef} className="element-wrapper">                
+                    {Object.values(menuItemMap).find(e => e.active)?.list?.map((Child, i) => <Child key={i}/>)}
+                </div>
+            </SortableContext>
         </div>
     )
 }
