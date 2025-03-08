@@ -23,7 +23,7 @@ const App: React.FC = () => {
         <Canvas />
       </div>
       <DragOverlay>
-        {OverlayElement == null ? null : <OverlayElement id={"preview"}/>}
+        {OverlayElement}
       </DragOverlay>
     </DndContext>
   )

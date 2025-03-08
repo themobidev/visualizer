@@ -12,13 +12,6 @@ import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
 
 export const GrayToplineMenuItem: React.FC = () => {
-    // const {attributes, listeners, setNodeRef} = useDraggable({
-    //     id: "GrayToplineMenuItem",
-    //     data: {
-    //         type: "ToplineMenuItem",
-    //         element: DarkToplineElement
-    //     }
-    // })
 
     const {
         attributes,
@@ -48,13 +41,6 @@ export const GrayToplineMenuItem: React.FC = () => {
 }
 
 export const DarkToplineMenuItem: React.FC = () => {
-    // const {attributes, listeners, setNodeRef} = useDraggable({
-    //     id: "DarkToplineMenuItem",
-    //     data: {
-    //         type: "ToplineMenuItem",
-    //         element: GrayToplineElement
-    //     }
-    // })
 
     const {
         attributes,
