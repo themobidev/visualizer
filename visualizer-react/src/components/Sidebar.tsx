@@ -6,10 +6,10 @@ const Sidebar: React.FC = () => {
 
     const {
         style,
-        setNodeRef,
-        sidebarOpen, 
+        sidebarOpen,
         setSidebarOpen,
-        menuItemMap,
+        CategoryToMenuItem,
+        activeCategory,
         setActiveCategory
     } = useSidebar() 
 
@@ -24,34 +24,33 @@ const Sidebar: React.FC = () => {
             <div className="category-wrapper">
                 <h2>ELEMENTS</h2>
                 {
-                    Object.entries(menuItemMap)
-                    .filter(([k]) => k!="")
-                    .map(([k, v], i ) => 
+                    (Object.keys(CategoryToMenuItem) as (keyof typeof CategoryToMenuItem)[])
+                    .filter(key => key != "")
+                    .map(key  => 
                         <CaterogyItem 
-                            key={i} 
-                            text={k} 
-                            active={v.active} 
-                            onClick={() => setActiveCategory(k)}
+                            key={key} 
+                            text={key} 
+                            active={activeCategory == key} 
+                            onClick={() => {
+                                setActiveCategory(key)
+                            }}
                         />
                     )
                 }
             </div>
-            <SortableContext id={"sidebar"} items={["GrayToplineMenuItem", "DarkToplineMenuItem"]}>
-                <div ref={setNodeRef} className="element-wrapper">                
-                    {Object.values(menuItemMap).find(e => e.active)?.list?.map((Child, i) => <Child key={i}/>)}
+            <SortableContext 
+                id={"sidebar"} 
+                items={CategoryToMenuItem[activeCategory].map(e => e.id)}
+            >
+                <div className="element-wrapper">                
+                    {CategoryToMenuItem[activeCategory].map(ElMap => <ElMap.Element key={ElMap.id} id={ElMap.id}/>)}
                 </div>
             </SortableContext>
         </div>
     )
 }
 
-interface CaterogyItemProp {
-    text: string,
-    active: boolean,
-    onClick?: () => void
-}
-
-const CaterogyItem: React.FC<CaterogyItemProp> = (prop) => {
+const CaterogyItem: React.FC<any> = (prop) => {
     return (
         <div onClick={prop.onClick} className={`caterogy-item ${prop.active?"active":""}`}>
             <div>{prop.text.toUpperCase()}</div>

@@ -22,7 +22,7 @@ const App: React.FC = () => {
       <div className='app-body'>
         <Canvas />
       </div>
-      <DragOverlay>
+      <DragOverlay dropAnimation={null}>
         {OverlayElement}
       </DragOverlay>
     </DndContext>
