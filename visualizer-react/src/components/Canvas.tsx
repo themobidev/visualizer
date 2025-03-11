@@ -20,7 +20,7 @@ const Canvas: React.FC = () => {
             </div>
             <SortableContext id={"canvas"} items={CanvasChildren["canvas"].map(e => e.id)} >
                 <div ref={setNodeRef} className="canvas-body">
-                    {CanvasChildren["canvas"].map((e, i) => <e.Child key={i} id={e.id}/>)}
+                    {CanvasChildren["canvas"].map(e => <e.Element key={e.id} id={e.id}/>)}
                 </div>
             </SortableContext>
         </div>
